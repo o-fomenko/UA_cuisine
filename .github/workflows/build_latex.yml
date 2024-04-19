@@ -1,0 +1,30 @@
+name: Compile LaTeX to PDF and Upload
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to match your branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install LaTeX
+      run: sudo apt-get install texlive-full -y
+
+    - name: Compile LaTeX to PDF
+      run: pdflatex -output-directory=build cookbook.tex
+
+    - name: Move PDF to Specific Directory
+      run: mkdir -p pdf_output && mv build/cookbook.pdf pdf_output/
+
+    - name: Upload PDF
+      uses: actions/upload-artifact@v2
+      with:
+        name: compiled_document
+        path: pdf_output/cookbook.pdf
+
