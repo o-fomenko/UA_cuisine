@@ -13,7 +13,7 @@ jobs:
         with:
           root_file: cookbook.tex
       - name: Upload PDF file
-        uses: softprops/action-gh-release@1
+        uses: softprops/action-gh-release@v2
         with:
           name: PDF
           path: cookbook.pdf
