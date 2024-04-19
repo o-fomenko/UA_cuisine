@@ -8,7 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
+    container:
+      image: docker://latex:latest
+      
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
