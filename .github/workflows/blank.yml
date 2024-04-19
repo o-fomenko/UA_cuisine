@@ -9,9 +9,9 @@ jobs:
       - name: Set up Git repo
         uses: actions/checkout@v4
       - name: Compile Latex document  
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: cookbook.tex
+        run: pdflatex -output-directory=build cookbook.tex
+      - name: Move PDF to Specific Directory
+        run: mkdir -p pdf_output && mv build/cookbook.pdf pdf_output/
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
